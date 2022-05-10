@@ -2,6 +2,7 @@ const http = require('http');
 var express = require('express');
 const https = require("https");
 const dotenv = require('dotenv');
+var cors = require('cors');
 const port = process.env.PORT || 3000
 
 const server = http.createServer((req, res) => {
@@ -12,6 +13,7 @@ const server = http.createServer((req, res) => {
 });
 
 var app = express();
+app.use(cors({origin: '*'}));
 
 // Parse POST requests as JSON payload
 app.use(express.json());
@@ -84,6 +86,7 @@ const getAccessTokenAsync = (hostname, path) => {
 
     const headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
+        'Access-Control-Allow-Origin':'*',
         'Cache-Control': 'no-cache',
         'Authorization': 'Basic ' + authz,
         'Content-Length': body.length
@@ -119,6 +122,7 @@ const createConferenceAsync = async (alias, ownerExternalId) => {
 
     const headers = {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin':'*',
         'Authorization': 'Bearer ' + jwt.access_token,
         'Content-Length': body.length
     };
@@ -155,6 +159,7 @@ const getInvitationAsync = async (conferenceId, externalId) => {
 
     const headers = {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin':'*',
         'Authorization': 'Bearer ' + jwt.access_token,
         'Content-Length': body.length
     };
