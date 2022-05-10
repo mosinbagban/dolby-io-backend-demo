@@ -1,0 +1,25 @@
+{
+  "name": "dolby-io-backend-demo",
+  "version": "1.0.0",
+  "description": "Dolby io backend app for demo",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mosinbagban/dolby-io-backend-demo.git"
+  },
+  "keywords": [
+    "Dolbyio",
+    "nodejs",
+    "heroku"
+  ],
+  "author": "Mohsin Bagwan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mosinbagban/dolby-io-backend-demo/issues"
+  },
+  "homepage": "https://github.com/mosinbagban/dolby-io-backend-demo#readme"
+}
