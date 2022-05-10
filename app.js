@@ -168,6 +168,18 @@ app.get('/access-token', function (request, response) {
             response.status(500);
         });
 });
+app.get('/', function (request, response) {
+  console.log(`[GET] ${request.url}`);
+
+  getClientAccessTokenAsync()
+      .then(accessToken => {
+          response.set('Content-Type', 'application/json');
+          response.send(JSON.stringify(accessToken));
+      })
+      .catch(() => {
+          response.status(500);
+      });
+});
 
 app.post('/conference', function (request, response) {
     console.log(`[POST] ${request.url}`, request.body);
