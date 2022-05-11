@@ -3,5 +3,14 @@
     "description": "This is the app builder demo app for Dolby.io",
     "repository": "https://github.com/mosinbagban/dolby-io-backend-demo",
     "logo": "https://avatars.githubusercontent.com/u/79344459",
-    "keywords": ["node", "express", "static", "dolbyio"]
+    "keywords": ["node", "express", "static", "dolbyio"],
+    "env": {
+        "CONSUMER_KEY": {
+            "description": "Go to your dashboard and for the first application, get your Consumer Key https://dashboard.dolby.io/dashboard/applications/summary",
+            "required": false
+        },
+        "CONSUMER_SECRET": {
+            "description": "Go to your dashboard and for the first application, get your Consumer Key and Consumer Secret https://dashboard.dolby.io/dashboard/applications/summary"
+        }
+    }
   }
