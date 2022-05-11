@@ -1,0 +1,7 @@
+{
+    "name": "Dolby.io App Builder Demo",
+    "description": "This is the app builder demo app for Dolby.io",
+    "repository": "https://github.com/mosinbagban/dolby-io-backend-demo",
+    "logo": "https://avatars.githubusercontent.com/u/79344459",
+    "keywords": ["node", "express", "static", "dolbyio"]
+  }
