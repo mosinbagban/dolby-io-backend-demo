@@ -6,8 +6,7 @@
     "keywords": ["node", "express", "static", "dolbyio"],
     "env": {
         "CONSUMER_KEY": {
-            "description": "Go to your dashboard and for the first application, get your Consumer Key https://dashboard.dolby.io/dashboard/applications/summary",
-            "required": false
+            "description": "Go to your dashboard and for the first application, get your Consumer Key https://dashboard.dolby.io/dashboard/applications/summary"
         },
         "CONSUMER_SECRET": {
             "description": "Go to your dashboard and for the first application, get your Consumer Key and Consumer Secret https://dashboard.dolby.io/dashboard/applications/summary"
