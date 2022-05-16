@@ -23,13 +23,13 @@ app.use(express.json());
 
 // Serve static files
 app.use(express.static('public'))
+console.log("Port: " + port)
+const CONSUMER_KEY = process.env.CONSUMER_KEY ?? '52M3D538jQTc8iNFjOZOFQ==';
+const CONSUMER_SECRET = process.env.CONSUMER_SECRET ?? 'Fb7QTdgfYNmjrfhTzKVyA8l0l2cVVetmlptyOgNMOY0=';
 
-const CONSUMER_KEY = process.env.CONSUMER_KEY ?? '';
-const CONSUMER_SECRET = process.env.CONSUMER_SECRET ?? '';
-
-if (CONSUMER_KEY.length <= 0 || CONSUMER_SECRET.length <= 0) {
-    throw new Error('The Consumer Key and/or Secret are missing!');
-}
+// if (CONSUMER_KEY.length <= 0 || CONSUMER_SECRET.length <= 0) {
+//     throw new Error('The Consumer Key and/or Secret are missing!');
+// }
 
 /**
  * Sends a POST request
@@ -208,6 +208,7 @@ app.post('/get-invited', function (request, response) {
         .then(accessToken => {
             response.set('Content-Type', 'application/json');
             response.send(JSON.stringify({accessToken: accessToken[externalId]}));
+            console.log(JSON.stringify({accessToken: accessToken[externalId]}))
         })
         .catch(() => {
             response.status(500);
