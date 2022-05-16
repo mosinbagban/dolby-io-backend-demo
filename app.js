@@ -113,7 +113,8 @@ const createConferenceAsync = async (alias, ownerExternalId) => {
         alias: alias,
         parameters: {
             dolbyVoice: true,
-            liveRecording: false
+            liveRecording: false,
+            ttl:600
         },
         ownerExternalId: ownerExternalId
     });
