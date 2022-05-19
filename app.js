@@ -201,7 +201,7 @@ app.post('/conference', function (request, response) {
 app.post('/get-invited', function (request, response) {
     console.log(`[POST] ${request.url}`, request.body);
 
-    const conferenceId = request.body.conferenceId;
+    const conferenceId = '1e8d15ba-3265-4dc4-9353-98c14a7dc54c';
     const externalId = request.body.externalId;
 
     getInvitationAsync(conferenceId, externalId)
