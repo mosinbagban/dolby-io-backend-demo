@@ -24,8 +24,8 @@ app.use(express.json());
 // Serve static files
 app.use(express.static('public'))
 console.log("Port: " + port)
-const CONSUMER_KEY = process.env.CONSUMER_KEY ?? '52M3D538jQTc8iNFjOZOFQ==';
-const CONSUMER_SECRET = process.env.CONSUMER_SECRET ?? 'Fb7QTdgfYNmjrfhTzKVyA8l0l2cVVetmlptyOgNMOY0=';
+const CONSUMER_KEY = process.env.CONSUMER_KEY ?? '';
+const CONSUMER_SECRET = process.env.CONSUMER_SECRET ?? '';
 
 // if (CONSUMER_KEY.length <= 0 || CONSUMER_SECRET.length <= 0) {
 //     throw new Error('The Consumer Key and/or Secret are missing!');
@@ -201,7 +201,7 @@ app.post('/conference', function (request, response) {
 app.post('/get-invited', function (request, response) {
     console.log(`[POST] ${request.url}`, request.body);
 
-    const conferenceId = '1e8d15ba-3265-4dc4-9353-98c14a7dc54c';
+    const conferenceId = request.body.conferenceId; //'1e8d15ba-3265-4dc4-9353-98c14a7dc54c';
     const externalId = request.body.externalId;
 
     getInvitationAsync(conferenceId, externalId)
