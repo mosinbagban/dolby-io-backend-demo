@@ -1,25 +1,52 @@
 const http = require('http');
 var express = require('express');
 const https = require("https");
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config();
 var cors = require('cors');
+
+
+
 const port = process.env.PORT || 3000
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  res.end('<h1>Hello World</h1> ');
-  console.log('Consumer Key' + process.env.CONSUMER_KEY)
-});
+// const server = http.createServer((req, res) => {
+//   res.statusCode = 200;
+//   res.setHeader('Content-Type', 'text/html');
+//   res.end('<h1>Hello World</h1> ');
+//   console.log('Consumer Key' + process.env.CONSUMER_KEY)
+// });
 
 var app = express();
+
+
 app.use(cors({origin: '*'}));
 
 // Parse POST requests as JSON payload
 app.use(express.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
 
-// Parse POST requests as JSON payload
-app.use(express.json());
+const db = require("./models");
+db.mongoose
+  .connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Connected to the database!");
+  })
+  .catch(err => {
+    console.log("Cannot connect to the database!", err);
+    process.exit();
+  });
+
+  // simple route
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome to DolbyIo App builder REST application." });
+  });
+
+  require("./routes/appbuilder.routes")(app);
+
+  require("./routes/turorial.routes")(app);
 
 // Serve static files
 app.use(express.static('public'))
@@ -83,7 +110,7 @@ const getAccessTokenAsync = (hostname, path) => {
     const body = "grant_type=client_credentials";
 
     const authz = Buffer.from(`${CONSUMER_KEY}:${CONSUMER_SECRET}`).toString('base64');
-
+    console.log('ConsumerKey: ' + CONSUMER_KEY);
     const headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Access-Control-Allow-Origin':'*',
