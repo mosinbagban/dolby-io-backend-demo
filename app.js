@@ -135,13 +135,16 @@ const getAPIAccessTokenAsync = () => {
 }
 
 // See: https://docs.dolby.io/interactivity/reference/conference#postconferencecreate
-const createConferenceAsync = async (alias, ownerExternalId) => {
+const createConferenceAsync = async (alias, ownerExternalId, stats) => {
+    console.log(`alias ${alias} stats ${stats}`);
+    
     const body = JSON.stringify({
         alias: alias,
         parameters: {
             dolbyVoice: true,
             liveRecording: false,
-            ttl:600
+            ttl:3600,
+            stats:stats
         },
         ownerExternalId: ownerExternalId
     });
@@ -214,8 +217,9 @@ app.post('/conference', function (request, response) {
 
     const alias = request.body.alias;
     const ownerExternalId = request.body.ownerExternalId;
+    const stats = request.body.stats;
 
-    createConferenceAsync(alias, ownerExternalId)
+    createConferenceAsync(alias, ownerExternalId, stats)
         .then(conference => {
             response.set('Content-Type', 'application/json');
             response.send(JSON.stringify(conference));
