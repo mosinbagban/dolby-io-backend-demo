@@ -137,7 +137,7 @@ const getAPIAccessTokenAsync = () => {
 // See: https://docs.dolby.io/interactivity/reference/conference#postconferencecreate
 const createConferenceAsync = async (alias, ownerExternalId, stats) => {
     console.log(`alias ${alias} stats ${stats}`);
-    
+
     const body = JSON.stringify({
         alias: alias,
         parameters: {
@@ -217,7 +217,7 @@ app.post('/conference', function (request, response) {
 
     const alias = request.body.alias;
     const ownerExternalId = request.body.ownerExternalId;
-    const stats = request.body.stats;
+    const stats = true;
 
     createConferenceAsync(alias, ownerExternalId, stats)
         .then(conference => {
